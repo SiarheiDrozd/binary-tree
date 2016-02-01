@@ -1,6 +1,8 @@
 'use strict';
 
-class BinaryTree {
+class
+BinaryTree
+{
 
   constructor()
 {
@@ -81,10 +83,10 @@ class BinaryTree {
 
   remove(data)
 {
-//  alert("current " + data);
+  //  alert("current " + data);
   var root = this.root;
-
   if (root) {
+    var address = "this.root";
     var thisNode = root;
     if (this.root.data == data)
       this.root = null;
@@ -95,49 +97,50 @@ class BinaryTree {
           if (thisNode.data < data) { // if value is less than data
             if (thisNode.right != null) { // if right object exist
               thisNode = thisNode.right;
+              address += ".right";
             }
             else {
-//              alert("elem not found " + data);
               break;
             }
           }
           else {
             if (thisNode.left != null) { // if left object exist
+              address += ".left";
               thisNode = thisNode.left;
             }
             else {
-//              alert("elem not found " + data);
               break;
             }
           }
         }
         else {
-//          alert("elem founded");
-          if (thisNode.right != null) {
-            var buffer = thisNode.right;
-//            alert("right != null");
+          var nodeAddress = address;
 
-            while (buffer.left != null) {
-              buffer = buffer.left;
-//              alert("buffer value" + buffer.data);
-            }
-            thisNode.data = buffer.data;
+          if (thisNode.right != null) {
+            thisNode = thisNode.right;
+
+            address += ".right";
 
             while (thisNode.left != null) {
               thisNode = thisNode.left;
-            }
-            thisNode = null;
-          } else
-            if (thisNode.left != null) {
-//              alert("left != null");
-              thisNode.data = thisNode.left;
-              thisNode = thisNode.left;
-            } else {
-              thisNode = null;
+              address += ".left";
             }
 
-//          alert(data + " removed " + "root data =" + root.data);
-//          alert(" root.right.data = " + this.root.right.right.data);
+            eval(nodeAddress + ".data = " + address + ".data");
+
+            address += " = null";
+            eval(address);
+
+          } else
+            if (thisNode.left != null) {
+              address += " = " + address + ".left";
+              eval(address);
+            } else {
+              address += " = null";
+              eval(address);
+
+            }
+
           break;
         }
       }
@@ -145,34 +148,37 @@ class BinaryTree {
 }
 
   /*recursive function for counting*/
-  counter(node, size) {
+  counter(node, size)
+{
   var currentNode = node;
   var count = size++;
 
-  if(currentNode.left != null){
-      count++;
-      count = this.counter(currentNode.left, count);
-    }
+  if (currentNode.left != null) {
+    count++;
+    count = this.counter(currentNode.left, count);
+  }
 
-  if(currentNode.right != null){
-      count++;
-      count = this.counter(currentNode.right, count);
-    }
+  if (currentNode.right != null) {
+    count++;
+    count = this.counter(currentNode.right, count);
+  }
 
   return count++;
 }
 
-  size() {
+  /*size counting*/
+  size()
+{
   var count = 0;
   var root = this.root;
 
-  if(root != null)
-  count += this.counter(root, count) + 1; //count + root
+  if (root != null)
+    count += this.counter(root, count) + 1; //count + root
 
-  alert("total count " + count);
   return count;
 }
 
+  /*asd*/
   isEmpty()
 {
   if (this.root != null) {
@@ -180,4 +186,5 @@ class BinaryTree {
   } else
     return true;
 }
+
 }
