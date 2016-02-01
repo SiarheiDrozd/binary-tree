@@ -81,7 +81,7 @@ class BinaryTree {
 
   remove(data)
 {
-  alert("current " + data);
+//  alert("current " + data);
   var root = this.root;
 
   if (root) {
@@ -97,7 +97,7 @@ class BinaryTree {
               thisNode = thisNode.right;
             }
             else {
-              alert("elem not found " + data);
+//              alert("elem not found " + data);
               break;
             }
           }
@@ -106,20 +106,20 @@ class BinaryTree {
               thisNode = thisNode.left;
             }
             else {
-              alert("elem not found " + data);
+//              alert("elem not found " + data);
               break;
             }
           }
         }
         else {
-          alert("elem founded");
+//          alert("elem founded");
           if (thisNode.right != null) {
             var buffer = thisNode.right;
-            alert("right != null");
+//            alert("right != null");
 
             while (buffer.left != null) {
               buffer = buffer.left;
-              alert("buffer value" + buffer.data);
+//              alert("buffer value" + buffer.data);
             }
             thisNode.data = buffer.data;
 
@@ -129,45 +129,48 @@ class BinaryTree {
             thisNode = null;
           } else
             if (thisNode.left != null) {
-              alert("left != null");
+//              alert("left != null");
               thisNode.data = thisNode.left;
               thisNode = thisNode.left;
             } else {
               thisNode = null;
             }
 
-          alert(data + " removed " + "root data =" + root.data);
-          alert(" root.right.data = " + this.root.right.right.data);
+//          alert(data + " removed " + "root data =" + root.data);
+//          alert(" root.right.data = " + this.root.right.right.data);
           break;
         }
       }
   }
 }
 
-  nodeWay(){
+  /*recursive function for counting*/
+  counter(node, size) {
+  var currentNode = node;
+  var count = size++;
 
-}
-  size(node, size)
-{
-
-  var elementsCont;
-  if (this.root != null) {
-    if(node){
-      elementsCont = size;
-      size(node.left, elementsCont);
-      size(node.right, elementsCont);
-      elementsCont++;
-      alert("size = " + elementsCont);
-      return elementsCont;
-    }else{
-    elementsCont = 10;
-//      if(this.root.left || this.root.right)
-//        size(this.root, 1);
-    return elementsCont;
+  if(currentNode.left != null){
+      count++;
+      count = this.counter(currentNode.left, count);
     }
-  }
-  else
-  return 0;
+
+  if(currentNode.right != null){
+      count++;
+      count = this.counter(currentNode.right, count);
+    }
+
+  return count++;
+}
+
+  size() {
+  var count = 0;
+  var root = this.root;
+
+  if(root != null)
+  count += this.counter(root, count) + 1; //count + root
+
+  alert("total count " + count);
+  return count;
 }
 
   isEmpty()
