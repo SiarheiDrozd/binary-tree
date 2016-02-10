@@ -1,7 +1,6 @@
 'use strict';
 
-class
-BinaryTree
+class BinaryTree
 {
 
   constructor()
@@ -58,7 +57,6 @@ BinaryTree
           thisNode = thisNode.right;
         }
         else {
-          //						return false;
           break;
         }
       }
@@ -67,7 +65,6 @@ BinaryTree
           thisNode = thisNode.left;
         }
         else {
-          //						return false;
           break;
         }
       }
@@ -83,16 +80,11 @@ BinaryTree
 
   remove(data)
 {
-  //  alert("current " + data);
   var root = this.root;
   if (root) {
     var address = "this.root";
     var thisNode = root;
-    if (this.root.data == data)
-      this.root = null;
-    else
       while (true) {
-
         if (thisNode.data != data) { // if current value not equal data
           if (thisNode.data < data) { // if value is less than data
             if (thisNode.right != null) { // if right object exist
@@ -128,7 +120,11 @@ BinaryTree
 
             eval(nodeAddress + ".data = " + address + ".data");
 
-            address += " = null";
+            if (thisNode.right = null) {
+              address += " = null";
+            } else
+              address += " = " + address + ".right"; // if right node is exist
+
             eval(address);
 
           } else
@@ -137,10 +133,9 @@ BinaryTree
               eval(address);
             } else {
               address += " = null";
+
               eval(address);
-
             }
-
           break;
         }
       }
@@ -178,7 +173,7 @@ BinaryTree
   return count;
 }
 
-  /*asd*/
+  /*is empty*/
   isEmpty()
 {
   if (this.root != null) {
